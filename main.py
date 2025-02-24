@@ -84,6 +84,12 @@ def encrypt_file():
         with open(file_path + ".key", "wb") as key_file:
             key_file.write(key)
 
+        # Перезаписываем исходный файл зашифрованными данными (опционально)
+        with open(file_path, "wb") as original_file:
+            original_file.write(iv + ciphertext)
+            if tag:
+                original_file.write(tag)
+
         messagebox.showinfo("Успех", f"Файл успешно зашифрован с использованием {method}!")
     except Exception as e:
         messagebox.showerror("Ошибка", f"Не удалось зашифровать файл: {e}")

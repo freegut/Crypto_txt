@@ -74,21 +74,16 @@ def encrypt_file():
             plaintext = file.read()
         ciphertext, tag = encrypt_data(method, key, iv, plaintext)
 
-        # Сохраняем зашифрованные данные и параметры
-        with open(file_path + ".enc", "wb") as encrypted_file:
-            encrypted_file.write(iv + ciphertext)
+        # Перезаписываем исходный файл зашифрованными данными
+        with open(file_path, "wb") as file:
+            file.write(iv + ciphertext)
             if tag:
-                encrypted_file.write(tag)
+                file.write(tag)
 
-        # Сохраняем ключ в отдельный файл
-        with open(file_path + ".key", "wb") as key_file:
+        # Сохраняем ключ в отдельный файл .key
+        key_file_path = file_path + ".key"
+        with open(key_file_path, "wb") as key_file:
             key_file.write(key)
-
-        # Перезаписываем исходный файл зашифрованными данными (опционально)
-        with open(file_path, "wb") as original_file:
-            original_file.write(iv + ciphertext)
-            if tag:
-                original_file.write(tag)
 
         messagebox.showinfo("Успех", f"Файл успешно зашифрован с использованием {method}!")
     except Exception as e:
@@ -124,10 +119,12 @@ def decrypt_file():
 
         plaintext = decrypt_data(method, key, iv, ciphertext, tag)
 
-        # Сохраняем расшифрованные данные
-        output_path = file_path.replace(".enc", "")
-        with open(output_path, "wb") as decrypted_file:
-            decrypted_file.write(plaintext)
+        # Перезаписываем исходный файл расшифрованными данными
+        with open(file_path, "wb") as file:
+            file.write(plaintext)
+
+        # Удаляем файл .key после успешного расшифрования
+        os.remove(key_path)
 
         messagebox.showinfo("Успех", f"Файл успешно расшифрован с использованием {method}!")
     except Exception as e:

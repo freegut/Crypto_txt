@@ -1,7 +1,3 @@
----
-
-# File Encryption and Decryption Tool
-
 This program provides a simple graphical interface for encrypting and decrypting files using modern encryption algorithms: **AES-256** and **ChaCha20**.
 
 ---

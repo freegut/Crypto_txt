@@ -90,13 +90,13 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Author
 
-[Your name or nickname]
+freegut
 
 ---
 
 ## Support
 
-If you have questions or encounter issues, please open an issue in the repository or contact me via email: [your email].
+If you have questions or encounter issues, please open an issue in the repository or contact me via email: guseiv2014@yandex.ru.
 
 ---
 
